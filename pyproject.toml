@@ -7,7 +7,12 @@ authors = [
     { name = "areejanzari", email = "areejanzari512@gmail.com" }
 ]
 requires-python = ">=3.12,<3.13"
-dependencies = []
+dependencies = [
+    "docling>=2.139.0",
+    "pydantic>=2.14.1",
+    "pyyaml>=6.0.3",
+    "unstructured[local-inference]>=0.27.27",
+]
 
 [project.scripts]
 my-neet-tutor = "my_neet_tutor:main"

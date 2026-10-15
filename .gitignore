@@ -4,6 +4,7 @@ __pycache__/
 .env
 .env.*
 !.env.example
+scratch.ipynb
 
 # Source documents and generated vector database
 data/documents/*.pdf
