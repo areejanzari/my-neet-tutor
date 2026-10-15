@@ -2,3 +2,16 @@
 __pycache__/
 *.py[cod]
 .env
+.env.*
+!.env.example
+
+# Source documents and generated vector database
+data/documents/*.pdf
+data/chroma/
+
+# Test and tool artifacts
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
