@@ -8,8 +8,9 @@ authors = [
 ]
 requires-python = ">=3.12,<3.13"
 dependencies = [
-    "docling>=2.139.0",
+    "opencv-python>=5.0.0.93",
     "pydantic>=2.14.1",
+    "python-dotenv>=1.2.4",
     "pyyaml>=6.0.3",
     "unstructured[local-inference]>=0.27.27",
 ]
@@ -20,3 +21,6 @@ my-neet-tutor = "my_neet_tutor:main"
 [build-system]
 requires = ["uv_build>=0.12.1,<0.13.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = []
