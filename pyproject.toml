@@ -8,10 +8,13 @@ authors = [
 ]
 requires-python = ">=3.12,<3.13"
 dependencies = [
+    "beautifulsoup4>=4.15.0",
     "opencv-python>=5.0.0.93",
     "pydantic>=2.14.1",
     "python-dotenv>=1.2.4",
     "pyyaml>=6.0.3",
+    "sentence-transformers>=6.1.0",
+    "transformers>=5.19.0",
     "unstructured[local-inference]>=0.27.27",
 ]
 
