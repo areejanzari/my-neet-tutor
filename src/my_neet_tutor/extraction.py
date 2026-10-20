@@ -14,8 +14,3 @@ def extract_elements(document_path: Path):
 
     return elements
 
-# BASE_DIR = Path(__file__).resolve().parent.parent.parent
-# DOCUMENT_PATH = BASE_DIR/"data/documents/kebo101.pdf"
-# elements = extract_elements(DOCUMENT_PATH)
-# print(f"Extracted {len(elements)} elements")
-
