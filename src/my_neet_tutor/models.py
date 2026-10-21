@@ -74,3 +74,9 @@ class TutorResponse(BaseModel):
     citations: list[AnswerCitation] = Field(default_factory=list)
     reason: str = ""
     missing_information: list[str] = Field(default_factory=list)
+
+
+class ChatRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    question: str = Field(min_length=1)

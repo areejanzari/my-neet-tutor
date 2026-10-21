@@ -1,14 +1,15 @@
 from pathlib import Path
 import chromadb
-from my_neet_tutor.models import TextChunk, RetrievedChunk
+from chromadb.api.models.Collection import Collection
 from my_neet_tutor.embeddings import generate_embedding
+from my_neet_tutor.models import RetrievedChunk, TextChunk
 
 
 CHROMA_DIR = Path("data/chroma")
 COLLECTION_NAME = "neet_chunks"
 
 
-def get_collection():
+def get_collection() -> Collection:
     client = chromadb.PersistentClient(path=str(CHROMA_DIR))
 
     collection = client.get_or_create_collection(
@@ -48,6 +49,7 @@ def store_chunks(
 
 def search_chunks(
     question: str,
+    collection: Collection | None = None,
     top_k: int = 4,
 ) -> list[RetrievedChunk]:
     if not question.strip():
@@ -56,7 +58,8 @@ def search_chunks(
     if top_k < 1:
         raise ValueError("top_k must be at least 1.")
 
-    collection = get_collection()
+    if collection is None:
+        collection = get_collection()
 
     if collection.count() == 0:
         return []

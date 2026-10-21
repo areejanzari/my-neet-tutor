@@ -1,6 +1,7 @@
 from typing import Literal
 from typing_extensions import TypedDict
 from langgraph.graph import StateGraph,START,END
+from chromadb.api.models.Collection import Collection
 from my_neet_tutor.answer_generator import generate_answer
 from my_neet_tutor.evidence_checker import evidence_check
 from my_neet_tutor.models import EvidenceCheck, RetrievedChunk, TutorResponse
@@ -11,10 +12,12 @@ class RAGState(TypedDict,total=False):
     retrieved_chunks: list[RetrievedChunk]
     evidence_check: EvidenceCheck
     response: TutorResponse
+    collection: Collection | None
 
 def retrieve_node(state: RAGState) -> dict:
     chunks = search_chunks(
         question=state['question'],
+        collection=state.get("collection"),
         top_k=4,
     )
 
@@ -99,11 +102,17 @@ graph.add_edge("insufficient_evidence", END)
 rag_graph = graph.compile()
 
 
-def run_rag_pipeline(question: str) -> TutorResponse:
+def run_rag_pipeline(
+    question: str,
+    collection: Collection | None = None,
+) -> TutorResponse:
     if not question.strip():
         raise ValueError("Question cannot be empty.")
 
-    result = rag_graph.invoke({"question": question})
+    result = rag_graph.invoke({
+        "question": question,
+        "collection": collection,
+    })
 
     return result["response"]
 

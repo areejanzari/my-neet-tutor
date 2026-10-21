@@ -2,7 +2,6 @@ from pathlib import Path
 from my_neet_tutor.models import ChapterInfo
 from my_neet_tutor.extraction import extract_elements
 from my_neet_tutor.storage import save_processed_data
-from my_neet_tutor.chapter_resolver import resolve_chapter
 
 def transform_elements(
     elements,
